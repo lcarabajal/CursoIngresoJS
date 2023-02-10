@@ -1,6 +1,27 @@
+/*
+lucas damian carabajal silva 
+if-10-
+*/
 function mostrar()
 {
-	//Genero el número RANDOM entre 1 y 10 
-	alert("ok");
+	let NotaDeExamen;
 
-}//FIN DE LA FUNCIÓN
+	Math.floor(Math.random() * 11);
+
+   
+    if(Math.floor(Math.random() * 11)<3)
+    {
+    	alert("vamos la proxima se puede");
+    }
+    else
+    {
+    	if(Math.floor(Math.random() * 11)>8)
+    	{
+    		alert("EXCELENTE");
+    	}
+    	else
+    	{
+    		alert("Aprobadó");
+    	}
+    }
+}

@@ -1,6 +1,8 @@
+/*
+Lucas Damian Carabajal Silva
+if-08-
+*/
 function mostrar()
 {
-	//Genero el número RANDOM entre 1 y 10 
-	alert("ok");	
-
-}//FIN DE LA FUNCIÓN
+	alert(Math.floor(Math.random() * 11));
+}
