@@ -9,74 +9,69 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  */
 function CalcularPrecio () 
 { 
-    let LamparasCompradas;
-    let CompraHecha;
-    let Precio;
-    let precioTotal;  
+    let compraRealizada;
+    let CompraHecha; 
     let descuento;
     let porcentaje; 
     let Marca;
+    let Precio=35;
+    let precioTotal; 
 
-    LamparasCompradas=document.getElementById('txtIdCantidad').value; 
-    LamparasCompradas=parseInt(LamparasCompradas);
+    compraRealizada=document.getElementById('txtIdCantidad').value; 
+    compraRealizada=parseInt(compraRealizada);
     Marca=document.getElementById('Marca').value; 
-    descuento=0;
-
-    if(LamparasCompradas>5)
+    descuento=0;    
+    
+    switch(compraRealizada)
     {
-        descuento=50;
+        case 6:
+            switch(Marca)
+            {
+                case "ArgentinaLuz":
+                porcentaje=50;
+                break; 
+            }     
+        break;
+        case 5:
+            switch(Marca)
+            {
+                case "ArgentinaLuz":
+                porcentaje=40;
+                break;
+                default:
+                    porcentaje=30;
+                break;
+            }
+        break;
+        case 4:
+            switch(Marca)
+            {
+                case "ArgentinaLuz":
+                case "FelipeLamparas":
+                    porcentaje=25;
+                break;
+                default:
+                    porcentaje=20;
+                break;
+            }
+        break;
+        case 3:
+            switch(Marca)
+            {
+                case "ArgentinaLuz":
+                    porcentaje=15;
+                break;
+                case "FelipeLamparas":
+                    porcentaje=10;
+                break;
+                default:
+                    porcentaje=5;
+                break;
+            }
+        break;
     }
-    else
-    {
-        if(LamparasCompradas>4)
-        {
-            if(Marca == "ArgentinaLuz")
-            {
-                descuento=40;
-            }
-            else
-            {
-                descuento=30;
-            }
-        }
-        else
-        {
-            if(LamparasCompradas>3)
-            {
-                if(Marca == "ArgentinaLuz" || Marca == "FelipeLamparas")
-                {
-                    descuento=25;
-                }
-                else
-                {
-                    descuento=20;
-                }
-            }
-            else
-            {
-                if(LamparasCompradas>2)
-                {
-                    if(Marca=="ArgentinaLuz")
-                    {
-                        descuento=15;
-                    }
-                    else
-                    {
-                        if(Marca=="FelipeLamparas")
-                        {
-                            descuento=10;
-                        }
-                        else
-                        {
-                            descuento=5;
-                        }
-                    }
-                }
-            }
-        }
-      CompraHecha= LamparasCompradas * Precio;
-      porcentaje= (CompraHecha * descuento) / 100;
-      precioTotal= CompraHecha - porcentaje;
-      alert("el total a pagar es "+precioFinal); 
-    }  
+    CompraHecha= compraRealizada * Precio;
+    descuento= (CompraHecha * porcentaje) / 100;
+    precioTotal= CompraHecha - descuento;
+    alert(precioTotal); 
 }

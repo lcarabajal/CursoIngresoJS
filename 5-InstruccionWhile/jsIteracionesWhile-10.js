@@ -9,21 +9,59 @@ hasta que el usuario quiera, mostrar:
 6-Cantidad de números pares.
 7-Promedio de positivos.
 8-Promedios de negativos.
-9-Diferencia entre positivos y negativos, (positvos-negativos). */
+9-Diferencia entre positivos y negativos, (positvos-negativos). 
+*/
 function mostrar()
 {
 	//declarar contadores y variables 
 	var respuesta;
 	var numeroIngresado;
-	var sumaNegativos=0;
+	var sumaNegativos;
+	var totalNegativo;
+	var totalPositivo;
+	var suma;
+	var cantidadDepositivos; 
+	var opcionIngresada;
 
 	respuesta="si";
 
 	while(respuesta=="si")
 	{
-		
-		respuesta=prompt("desea continuar?");
-	}//fin del while
-
+		numeroIngresado=prompt("Ingrese un numero");
+		numeroIngresado=parseInt(numeroIngresado);
+		opcionIngresada=prompt("1-Suma de los negativos\n2-Suma de los positivos\n3-Cantidad de positivos.\n4-Cantidad de negativos.\n5-Cantidad de ceros.\n6-Cantidad de números pares.\n7-Promedio de positivos.\n8-Promedios de negativos.\n9-Diferencia entre positivos y negativos");
+	    opcionIngresada=parseInt(opcionIngresada);
+		switch(opcionIngresada)
+		{
+			case 1:
+			    while(numeroIngresado!=Number && numeroIngresado>0)
+				{
+					numeroIngresado=prompt("porfavor ingrese un numero valido: ");
+				}
+				sumaNegativos=prompt("ingrese un numero negativo: ");
+				sumaNegativos=parseInt(sumaNegativos);
+				totalNegativo=sumaNegativos+numeroIngresado;
+				alert(totalNegativo);
+				respuesta=prompt("desea continuar? ");
+			break;
+			case 2:
+				while(numeroIngresado!=Number && numeroIngresado<0)
+				{
+					numeroIngresado=prompt("porfavor ingrese un numero valido: ");
+				}
+				suma=prompt("ingrese un numero positivo: ");
+				suma=parseInt(suma);
+				totalPositivo=suma+numeroIngresado;
+				alert(totalPositivo);
+				respuesta=prompt("desea continuar? ");
+			break;	  
+		}
+	}
+    
+	while(respuesta=="no")
+	{
+		respuesta=prompt("que quiere hacer ahora? "); 
+	}
+	
 	document.write("la suma de negativos es :"+sumaNegativos);
 }//FIN DE LA FUNCIÓN
