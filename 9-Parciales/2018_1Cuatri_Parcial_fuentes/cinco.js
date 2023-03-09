@@ -13,106 +13,107 @@ Informar el título del primer libro de drama que se vendió.
 
 function mostrar()
 {
-    let tituloIngresado; 
+    let tituloIngresado;
     let generoIngresado;
     let materialIngresado;
     let importeIngresado;
-    let baratoDrama;
-    let contadorGeneroDrama=0;
-    let contadorGeneroCienciaFiccion=0;
-    let contadorGeneroTerror=0;
-    let primerDrama=true;
-    let respuesta=true;
-    let nombreDramaBarato;
-    let contadorTotal;
-    let porcentajeFinalDrama;
-    let porcentajeFinalTerror;
-    let porcentajeFinalCienciaficcion;
-    let primernombreDramaBarato;
-    let mensaje;
+    let respuesta;
+    let banderaPrimero=true;
+    let nombreprimerDrama;
+    let masBaratoDramaNombre;
+    let masBaratoDramaImporte;
+    let contadorDrama=0;
+    let contadorCienciaFiccion=0;
+    let contadorTerror=0;
+    let porcentajeDrama;
+    let porcentajeCienciaficcion;
+    let porcentajeTerror;
 
     while(respuesta==true)
     {
-        tituloIngresado=prompt("Ingrese el titulo del nombre: ");
+        tituloIngresado=prompt("Ingrese nombre del libro: ");
         while(isNaN(tituloIngresado)==false)
         {
-            tituloIngresado=prompt("Ingrese el titulo del nombre: ");
+            tituloIngresado=prompt("Ingrese nombre del libro: ")
         }
-        generoIngresado=prompt("Ingrese el genero: Drama, Ciencia ficcion, Terror ").toLowerCase();
+        
+        generoIngresado=prompt("Ingrese el genero: drama, ciencia ficcion, terror ").toLowerCase();
         while(isNaN(generoIngresado)==false)
         {
-            generoIngresado=prompt("Ingrese el genero: Drama, Ciencia ficcion, Terror ");
+            generoIngresado=prompt("Ingrese el genero: drama, ciencia ficcion, terror ").toLowerCase()
         }
         while(generoIngresado!="drama" && generoIngresado!="ciencia ficcion" && generoIngresado!="terror")
         {
-            generoIngresado=prompt("Ingrese el genero: Drama, Ciencia ficcion, Terror ");
+            generoIngresado=prompt("Ingrese el genero: drama, ciencia ficcion, terror ").toLowerCase()
         }
-        materialIngresado=prompt("Ingrese material: rustico o tapa dura ").toLowerCase();
+        materialIngresado=prompt("ingrese el material: rustica o tapa dura").toLowerCase();
         while(isNaN(materialIngresado)==false)
         {
-            materialIngresado=prompt("Ingrese material: rustico o tapa dura ").toLowerCase();
+            materialIngresado=prompt("ingrese el material: rustica o tapa dura").toLowerCase()
         }
-        while(materialIngresado!="rustico" && materialIngresado!="tapa dura")
+        while(materialIngresado!="rustica" && materialIngresado!="tapa dura")
         {
-            materialIngresado=prompt("Ingrese material: rustico o tapa dura ").toLowerCase();
+            materialIngresado=prompt("ingrese el material: rustica o tapa dura").toLowerCase()
         }
-        importeIngresado=prompt("ingrese el importe deseado: ");
+        importeIngresado=prompt("ingrese el costo del libro: ");
         importeIngresado=parseInt(importeIngresado);
         while(isNaN(importeIngresado)==true)
         {
-            importeIngresado=prompt("ingrese el importe deseado: ");
+            importeIngresado=prompt("ingrese el costo del libro: ");
             importeIngresado=parseInt(importeIngresado);
         }
-        while(importeIngresado<0 || importeIngresado>30000)
+        while(importeIngresado<0 || importeIngresado> 30000)
         {
-            importeIngresado=prompt("ingrese el importe deseado: ");
+            importeIngresado=prompt("ingrese el costo del libro: ");
             importeIngresado=parseInt(importeIngresado);
         }
-        //El más barato de los libros de drama con su importe.
-        //Qué porcentaje de cada género se vendió.
+
         switch(generoIngresado)
         {
-            case "ciencia ficcion":
-                contadorGeneroCienciaFiccion++;
-                break;
             case "drama":
-                if(primerDrama==true)
-                {   
-                    baratoDrama=importeIngresado;
-                    nombreDramaBarato=tituloIngresado;
-                    primernombreDramaBarato=tituloIngresado;
-                    primerDrama=false;
+                if(banderaPrimero==true)
+                {
+                    masBaratoDramaImporte=importeIngresado;
+                    masBaratoDramaNombre=tituloIngresado;
+                    nombreprimerDrama=tituloIngresado;
                 }
                 else
                 {
-                    if(baratoDrama>importeIngresado)
+                    if(masBaratoDramaImporte>importeIngresado)
                     {
-                        baratoDrama=importeIngresado;
-                        nombreDramaBarato=tituloIngresado;
+                        masBaratoDramaImporte=importeIngresado;
+                        masBaratoDramaNombre=tituloIngresado;
                     }
+
                 }
-                contadorGeneroDrama++;
+                contadorDrama++;
                 break;
-            case "terror":
-                contadorGeneroTerror++;
+            case "ciencia ficcion":
+                contadorCienciaFiccion++;
+                break;
+            default:
+                contadorTerror++;
                 break;
         }
-        respuesta=confirm("Desea continuar?");
-    }//  5                   3               1                           1                       
-    contadorTotal= contadorGeneroTerror+contadorGeneroDrama+contadorGeneroCienciaFiccion;
-    //                             1                     5               = 20%                   
-    porcentajeFinalDrama= contadorGeneroDrama*100/contadorTotal
-    //                                           1                     5        = 20%   
-    porcentajeFinalCienciaficcion= contadorGeneroCienciaFiccion*100/contadorTotal;
-    //                             3                    5           = 60%
-    porcentajeFinalTerror= contadorGeneroTerror*100/contadorTotal;
-    porcentajeFinalCienciaficcion=parseInt(porcentajeFinalCienciaficcion);
-    porcentajeFinalDrama=parseInt(porcentajeFinalDrama);
-    porcentajeFinalTerror=parseInt(porcentajeFinalTerror);
-    mensaje="El más barato de los libros de drama:"+ nombreDramaBarato + " con su importe de: "+ baratoDrama;
-    mensaje+="\nEl porcentaje del genero Drama es: "+porcentajeFinalDrama; "%" 
-    mensaje+="\nEl porcentaje del genero ciencia ficcion es: "+porcentajeFinalCienciaficcion; "%"
-    mensaje+="\nEl porcentaje del genero terror es: "+porcentajeFinalTerror; "%"
-    mensaje+="\nEl más barato de los libros de drama:"+ primernombreDramaBarato;
-    alert(mensaje);
+        contadorTotal= contadorCienciaFiccion+contadorDrama+contadorTerror;
+        porcentajeDrama= contadorDrama*100 /contadorTotal;
+        porcentajeTerror= contadorTerror*100 / contadorTotal;
+        porcentajeCienciaficcion= contadorCienciaFiccion*100/ contadorTotal;
+        porcentajeDrama= parseInt(porcentajeDrama);
+        porcentajeCienciaficcion= parseInt(porcentajeCienciaficcion);
+        porcentajeTerror= parseInt(porcentajeTerror);
+
+        mensaje="El libro mas barato de Drama es: "+masBaratoDramaNombre+ " y su precio es: " +masBaratoDramaImporte;
+        mensaje+="\nEl porcentaje de libros de drama es: "+ porcentajeDrama + "%";
+        mensaje+="\nEl porcentaje de libros de Ciencia Ficcion es: "+ porcentajeCienciaficcion + "%";
+        mensaje+="\nEl porcentaje de libros de Terror es: "+ porcentajeTerror + "%";
+        if(banderaPrimero==true)
+        {
+            mensaje="\nNO pusieron libro de Drama"; 
+        }
+        else
+        {
+            mensaje="\nEl Primer libro De Drama es: "+nombreprimerDrama;
+        }         
+    }
 }
